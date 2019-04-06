@@ -6,4 +6,6 @@
 
 @section('content')
     <h1>{{ __('homepage.welcome') }}</h1>
+    {{ bcrypt("test1234") }}
+    {{ \App\User::find(1)->socials }}
 @endsection

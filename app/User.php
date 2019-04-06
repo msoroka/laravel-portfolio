@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
+use App\Social;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,7 +42,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'birth_date'        => 'date',
     ];
 
-    public function role(){
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute() {
+        return sprintf('%s %s', $this->first_name, $this->last_name);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
         return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function socials()
+    {
+        return $this->belongsToMany(Social::class);
     }
 }
