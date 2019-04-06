@@ -17,6 +17,7 @@
         <div class="row">
             @include('_partials.admin.sidebar')
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
+                @include('flash::message')
                 @yield('content')
             </main>
         </div>

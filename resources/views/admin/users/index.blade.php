@@ -31,13 +31,35 @@
                         <th class="align-middle" scope="row">{{ sprintf('%s, %s', $user->city, $user->country) }}</th>
                         <th class="align-middle" scope="row">{{ $user->role->name }}</th>
                         <th class="align-middle fit" scope="row">
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user) }}">
+                                <span data-feather="edit"></span>
+                                Edit
+                            </a>
+                            @if(Auth::user()->id != $user->id)
+                                <button class="btn btn-danger btn-sm" onclick="event.preventDefault();
+                                                     document.getElementById('user-destroy').submit();">
+                                    <span data-feather="trash-2"></span>
+                                    Delete
+                                </button>
+                                <form id="user-destroy" method="POST" action="{{ route('admin.users.destroy', $user) }}"
+                                      onclick="return confirm('Are you sure?');">
+                                    {{ method_field('delete') }}
+                                    @csrf
+                                </form>
+                            @endif
                         </th>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-dark" href="{{ route('admin.users.create') }}">
+                <span data-feather="plus"></span>
+                Add new user
+            </a>
         </div>
     </div>
 @endsection

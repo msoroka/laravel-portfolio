@@ -17,8 +17,10 @@ class CreateSocialUserTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('social_id')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('social_id')->references('id')->on('socials');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('social_id')->references('id')->on('socials')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

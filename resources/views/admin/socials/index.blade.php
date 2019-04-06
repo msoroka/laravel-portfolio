@@ -23,13 +23,33 @@
                         <th class="align-middle" scope="row">{{ $social->name }}</th>
                         <th class="align-middle" scope="row">{{ $social->link }}</th>
                         <th class="align-middle fit" scope="row">
-                            <button class="btn btn-primary btn-sm">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <a class="btn btn-primary btn-sm" href="{{ route('admin.socials.edit', $social) }}">
+                                <span data-feather="edit"></span>
+                                Edit
+                            </a>
+                            <button class="btn btn-danger btn-sm" onclick="event.preventDefault();
+                                                 document.getElementById('social-destroy').submit();">
+                                <span data-feather="trash-2"></span>
+                                Delete
+                            </button>
+                            <form id="social-destroy" method="POST" action="{{ route('admin.socials.destroy', $social) }}"
+                                  onclick="return confirm('Are you sure?');">
+                                {{ method_field('delete') }}
+                                @csrf
+                            </form>
                         </th>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-dark" href="{{ route('admin.socials.create') }}">
+                <span data-feather="plus"></span>
+                Add new social
+            </a>
         </div>
     </div>
 @endsection

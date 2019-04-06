@@ -16,10 +16,7 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/', 'PageController@homepage')->name('home');
 
-Route::get('profile', function () {
-    return 'It works';
-})->middleware('verified');

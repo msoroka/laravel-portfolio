@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'city',
         'country',
+        'role_id',
     ];
 
     /**
@@ -43,6 +44,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * @var array
+     */
+    protected $dates = [
+        'birth_date',
+    ];
+
+    /**
      * @return bool
      */
     public function isAdmin() {
@@ -54,6 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getFullNameAttribute() {
         return sprintf('%s %s', $this->first_name, $this->last_name);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
     /**

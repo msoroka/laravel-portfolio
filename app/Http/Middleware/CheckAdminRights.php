@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Role;
+use Illuminate\Support\Facades\Auth;
 
 class CheckAdminRights
 {
@@ -16,12 +16,10 @@ class CheckAdminRights
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->user();
-        $adminRoleSlug = Role::where('slug', 'admin')->first()->slug;
-
-        if($user->role->slug === $adminRoleSlug) {
+        if (Auth::check() && Auth::user()->isAdmin()) {
             return $next($request);
         }
+
 
         return redirect()->route('home');
     }
