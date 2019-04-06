@@ -43,6 +43,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * @return bool
+     */
+    public function isAdmin() {
+        return $this->role->slug == Role::where('slug', 'admin')->first()->slug;
+    }
+
+    /**
      * @return string
      */
     public function getFullNameAttribute() {

@@ -1,5 +1,4 @@
 <?php
 
-Route::get('test', function () {
-    return 'It works';
-})->middleware('verified');
+Route::get('/', 'PageController@adminDashboard')->name('dashboard');
+

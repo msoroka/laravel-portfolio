@@ -18,7 +18,7 @@ Route::get('locale/{locale}', function ($locale){
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', 'PageController@index')->name('home');
+Route::get('/', 'PageController@homepage')->name('home');
 
 Route::get('profile', function () {
     return 'It works';
