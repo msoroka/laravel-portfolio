@@ -4,28 +4,39 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Role;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function index()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function index(): View
     {
         return view('admin.users.index', [
             'users' => User::all(),
         ]);
     }
 
-    public function create()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function create(): View
     {
         return view('admin.users.create', [
             'roles' => Role::all(),
         ]);
     }
 
-    public function store(CreateUserRequest $request)
+    /**
+     * @param  CreateUserRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(CreateUserRequest $request): RedirectResponse
     {
         $data = $request->validated();
 
@@ -40,7 +51,11 @@ class UserController extends Controller
         return redirect()->back()->withErrors()->withInput();
     }
 
-    public function edit(User $user)
+    /**
+     * @param  User  $user
+     * @return \Illuminate\Contracts\View\Factory|View
+     */
+    public function edit(User $user): View
     {
         return view('admin.users.edit', [
             'user'  => $user,
@@ -48,7 +63,12 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    /**
+     * @param  UpdateUserRequest  $request
+     * @param  User  $user
+     * @return RedirectResponse
+     */
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $data = $request->validated();
 
@@ -67,7 +87,12 @@ class UserController extends Controller
         return redirect()->back()->withErrors()->withInput();
     }
 
-    public function destroy(User $user)
+    /**
+     * @param  User  $user
+     * @return RedirectResponse
+     * @throws \Exception
+     */
+    public function destroy(User $user): RedirectResponse
     {
         if ($user->delete()) {
             flash('User deleted')->success();
