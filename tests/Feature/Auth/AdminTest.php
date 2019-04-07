@@ -12,19 +12,35 @@ class AdminTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function testAdminDashboardAccess(): void
+    public function testAdminAccessWithRights(): void
     {
         $user = factory(User::class)->create();
-        $role = Role::create([
-           'slug' => 'admin',
-           'name' => $this->faker->word,
+        $user->role = Role::create([
+            'slug' => 'admin',
+            'name' => $this->faker->word,
         ]);
 
         $this->actingAs($user)->assertAuthenticated();
-        $this->assertEquals($this->get(route('admin.dashboard'))->status(), 302);
 
-        $user->role = $role;
+        $response = $this->get(route('admin.dashboard'));
+        $this->assertEquals($response->status(), 200);
+    }
 
-        $this->assertEquals($this->get(route('admin.dashboard'))->status(), 200);
+    public function testAdminAccessWithoutRights(): void
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->assertAuthenticated();
+
+        $response = $this->get(route('admin.dashboard'));
+        $response->assertRedirect(route('home'));
+        $this->assertEquals($response->status(), 302);
+    }
+
+    public function testAdminAccessLoggedOut(): void
+    {
+        $response = $this->get(route('admin.dashboard'));
+        $response->assertRedirect(route('login'));
+        $this->assertEquals($response->status(), 302);
     }
 }
