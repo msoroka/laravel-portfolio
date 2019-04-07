@@ -3,6 +3,7 @@
 namespace Tests\Unit\Users;
 
 use App\User;
+use App\Role;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -13,10 +14,7 @@ class UserUnitTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function testUserCreate()
+    public function testUserCreate(): void
     {
         $data = $this->prepareAssertionData();
         $user = User::create($data);
@@ -32,10 +30,8 @@ class UserUnitTest extends TestCase
         $this->assertEquals(Arr::get($data, 'country'), $user->country);
     }
 
-    /**
-     * @test
-     */
-    public function testUserGet()
+
+    public function testUserGet():void
     {
         $user = factory(User::class)->create();
         $foundUser = User::find($user->id);
@@ -51,10 +47,7 @@ class UserUnitTest extends TestCase
         $this->assertEquals($foundUser->country, $user->country);
     }
 
-    /**
-     * @test
-     */
-    public function testUserUpdate()
+    public function testUserUpdate(): void
     {
         $user = factory(User::class)->create();
         $data = $this->prepareAssertionData();
@@ -72,10 +65,7 @@ class UserUnitTest extends TestCase
         $this->assertEquals(Arr::get($data, 'country'), $user->country);
     }
 
-    /**
-     * @test
-     */
-    public function testUserDelete()
+    public function testUserDelete(): void
     {
         $user = factory(User::class)->create();
         $delete = $user->delete();
@@ -83,11 +73,24 @@ class UserUnitTest extends TestCase
         $this->assertTrue($delete);
     }
 
+    public function testUserRole(): void
+    {
+        $user = factory(User::class)->create();
+        $role = factory(Role::class)->create();
+
+        $user->update([
+            'role_id' => $role->id,
+        ]);
+
+        $this->assertInstanceOf(Role::class, $user->role);
+        $this->assertEquals($user->role->name, $role->name);
+        $this->assertEquals($user->role->slug, $role->slug);
+    }
+
     /**
      * @return array
      */
-    private function prepareAssertionData()
-    : array
+    private function prepareAssertionData(): array
     {
         return [
             'first_name' => $this->faker->firstNameMale,

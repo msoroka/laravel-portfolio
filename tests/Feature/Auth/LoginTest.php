@@ -11,30 +11,21 @@ class LoginTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function testGuestLoginView()
+    public function testGuestLoginView(): void
     {
         $response = $this->get('/login');
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
     }
 
-    /**
-     * @test
-     */
-    public function testAuthLoginView()
+    public function testAuthLoginView(): void
     {
         $user = factory(User::class)->make();
         $response = $this->actingAs($user)->get('/login');
         $response->assertRedirect(route('home'));
     }
 
-    /**
-     * @test
-     */
-    public function testCorrectLogin()
+    public function testCorrectLogin(): void
     {
         $user = factory(User::class)->create([
             'password' => bcrypt($password = $this->faker->password),
@@ -46,10 +37,7 @@ class LoginTest extends TestCase
         $response->assertRedirect(route('home'));
     }
 
-    /**
-     * @test
-     */
-    public function testIncorrectLogin()
+    public function testIncorrectLogin(): void
     {
         $user = factory(User::class)->create([
             'password' => bcrypt($this->faker->password),
