@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -53,18 +55,23 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return bool
      */
-    public function isAdmin() {
-        return $this->role->slug == Role::where('slug', 'admin')->first()->slug;
+    public function isAdmin(): bool
+    {
+        return $this->role ? $this->role->slug == Role::where('slug', 'admin')->first()->slug : false;
     }
 
     /**
      * @return string
      */
-    public function getFullNameAttribute() {
+    public function getFullNameAttribute(): string
+    {
         return sprintf('%s %s', $this->first_name, $this->last_name);
     }
 
-    public function setPasswordAttribute($value)
+    /**
+     * @param $value
+     */
+    public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = bcrypt($value);
     }
@@ -72,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
@@ -80,7 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function socials()
+    public function socials(): BelongsToMany
     {
         return $this->belongsToMany(Social::class);
     }

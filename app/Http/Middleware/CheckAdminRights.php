@@ -20,7 +20,6 @@ class CheckAdminRights
             return $next($request);
         }
 
-
         return redirect()->route('home');
     }
 }
