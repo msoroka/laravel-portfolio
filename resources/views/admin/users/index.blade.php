@@ -29,7 +29,7 @@
                         <th class="align-middle" scope="row">{{ $user->phone }}</th>
                         <th class="align-middle" scope="row">{{ $user->birth_date->format('Y-m-d') }}</th>
                         <th class="align-middle" scope="row">{{ sprintf('%s, %s', $user->city, $user->country) }}</th>
-                        <th class="align-middle" scope="row">{{ $user->role->name }}</th>
+                        <th class="align-middle" scope="row">{{ $user->role ? $user->role->name : 'None' }}</th>
                         <th class="align-middle fit" scope="row">
                             <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit', $user) }}">
                                 <span data-feather="edit"></span>
