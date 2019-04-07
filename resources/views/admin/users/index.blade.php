@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <p class="h4 mb-4 text-center">All Users</p>
     <div class="row">
         <div class="col-12">
             <table class="table table-hover table-bordered table-sm">
@@ -23,7 +24,7 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <th class="align-middle" scope="row">{{ $user->id }}</th>
+                        <th class="align-middle fit" scope="row">{{ $user->id }}</th>
                         <th class="align-middle" scope="row">{{ $user->full_name }}</th>
                         <th class="align-middle" scope="row">{{ $user->email }}</th>
                         <th class="align-middle" scope="row">{{ $user->phone }}</th>
@@ -36,13 +37,12 @@
                                 Edit
                             </a>
                             @if(Auth::user()->id != $user->id)
-                                <button class="btn btn-danger btn-sm" onclick="event.preventDefault();
-                                                     document.getElementById('user-destroy').submit();">
+                                <button type="submit" form="user-destroy{{ $user->id }}" class="btn btn-danger btn-sm">
                                     <span data-feather="trash-2"></span>
                                     Delete
                                 </button>
-                                <form id="user-destroy" method="POST" action="{{ route('admin.users.destroy', $user) }}"
-                                      onclick="return confirm('Are you sure?');">
+                                <form id="user-destroy{{ $user->id }}" method="POST"
+                                      action="{{ route('admin.users.destroy', $user) }}">
                                     {{ method_field('delete') }}
                                     @csrf
                                 </form>

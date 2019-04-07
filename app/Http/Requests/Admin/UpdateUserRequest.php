@@ -45,7 +45,7 @@ class UpdateUserRequest extends FormRequest
             if (!Role::all()->contains($role_id)) {
                 $validator->errors()->add(
                     'role_id',
-                    'Role doesnt exists',
+                    'Roles doesnt exists',
                 );
             }
         });

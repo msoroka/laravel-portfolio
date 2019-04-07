@@ -45,15 +45,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.users.index') }}">
-                    <span data-feather="users"></span>
-                    Users
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.socials.index') }}">
                     <span data-feather="facebook"></span>
                     Socials
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
+                    <span data-feather="users"></span>
+                    Users
                 </a>
             </li>
             <li class="nav-item">

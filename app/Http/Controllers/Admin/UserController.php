@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\CreateUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -13,7 +14,7 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @return View
      */
     public function index(): View
     {
@@ -23,7 +24,7 @@ class UserController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @return View
      */
     public function create(): View
     {
@@ -34,7 +35,7 @@ class UserController extends Controller
 
     /**
      * @param  CreateUserRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(CreateUserRequest $request): RedirectResponse
     {
@@ -53,7 +54,7 @@ class UserController extends Controller
 
     /**
      * @param  User  $user
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @return View
      */
     public function edit(User $user): View
     {
@@ -72,11 +73,11 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        if($data['password'] == null) {
+        if ($data['password'] == null) {
             unset($data['password']);
         }
 
-        if($user->update($data)) {
+        if ($user->update($data)) {
             flash('User edited')->success();
 
             return redirect()->route('admin.users.index');
@@ -90,7 +91,7 @@ class UserController extends Controller
     /**
      * @param  User  $user
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(User $user): RedirectResponse
     {

@@ -2,46 +2,100 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Role\CreateRoleRequest;
+use App\Http\Requests\Role\UpdateRoleRequest;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Role;
+use Illuminate\View\View;
 
 class RoleController extends Controller
 {
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
         return view('admin.roles.index', [
             'roles' => Role::all(),
         ]);
     }
 
-    public function create()
+    /**
+     * @return View
+     */
+    public function create(): View
     {
-        //
+        return view('admin.roles.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param  CreateRoleRequest  $request
+     * @return RedirectResponse
+     */
+    public function store(CreateRoleRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        if (Role::create($data)) {
+            flash('Role created')->success();
+
+            return redirect()->route('admin.roles.index');
+        }
+
+        flash('Error while role creating')->error();
+
+        return redirect()->back()->withErrors()->withInput();
     }
 
-    public function show(Role $role)
+    /**
+     * @param  Role  $role
+     * @return View
+     */
+    public function edit(Role $role): View
     {
-        //
+        return view('admin.roles.edit', [
+            'role' => $role,
+        ]);
     }
 
-    public function edit(Role $role)
+    /**
+     * @param  UpdateRoleRequest  $request
+     * @param  Role  $role
+     * @return RedirectResponse
+     */
+    public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        if ($role->update($data)) {
+            flash('Role edited')->success();
+
+            return redirect()->route('admin.roles.index');
+        }
+
+        flash('Error while role editing')->error();
+
+        return redirect()->back()->withErrors()->withInput();
     }
 
-    public function update(Request $request, Role $role)
+    /**
+     * @param  Role  $role
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function destroy(Role $role): RedirectResponse
     {
-        //
-    }
+        if ($role->delete()) {
+            flash('Role deleted')->success();
 
-    public function destroy(Role $role)
-    {
-        //
+            return redirect()->route('admin.roles.index');
+        }
+
+        flash('Error while role removing')->error();
+
+        return redirect()->route('admin.roles.index');
+
     }
 }
