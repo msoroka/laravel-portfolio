@@ -9,6 +9,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     : void
     {
+        Role::create([
+            'name' => 'Demonstration',
+            'slug' => 'demo',
+        ]);
+
         $role = Role::create([
             'name' => 'Administrator',
             'slug' => 'admin',

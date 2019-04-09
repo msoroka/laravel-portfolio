@@ -11,12 +11,15 @@
 |
 */
 
-Route::get('locale/{locale}', function ($locale){
+Route::get('locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
+
     return redirect()->back();
 });
 
 Auth::routes();
+
+Route::post('register', 'Auth\RegisterController@register')->name('register');
 
 Route::get('/', 'PageController@homepage')->name('home');
 

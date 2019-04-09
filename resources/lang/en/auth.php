@@ -25,6 +25,12 @@ return [
     'forgot'           => 'Forgot Your Password?',
     'register'         => 'Register',
     'name'             => 'Name',
+    'first_name'       => 'First Name',
+    'last_name'        => 'Last Name',
+    'phone'            => 'Phone Number',
+    'birth_date'       => 'Birth Date',
+    'city'             => 'City',
+    'country'          => 'Country',
     'reset-link'       => 'Send Password Reset Link',
     'verify'           => [
         'header' => 'Verify Your Email Address',
@@ -33,5 +39,6 @@ return [
         'not'    => 'If you did not receive the email',
         'click'  => 'click here to request another',
     ],
-
+    'registered-error' => 'Error while try to register. Please try again.',
+    'registered'       => 'Successfully registered',
 ];

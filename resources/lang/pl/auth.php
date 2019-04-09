@@ -18,13 +18,19 @@ return [
 
     'email'            => 'Adres E-mail',
     'password'         => 'Hasło',
-    'password-confirm' => 'Potwierdź Password',
+    'password-confirm' => 'Potwierdź Hasło',
     'password-reset'   => 'Resetuj Hasło',
     'remember'         => 'Zapamiętaj Mnie',
     'login'            => 'Zaloguj',
     'forgot'           => 'Zapomniałeś hasła?',
     'register'         => 'Zarejestruj',
     'name'             => 'Nazwa',
+    'first_name'       => 'Imię',
+    'last_name'        => 'Nazwisko',
+    'phone'            => 'Numer Telefonu',
+    'birth_date'       => 'Urodziny',
+    'city'             => 'Miasto',
+    'country'          => 'Kraj',
     'reset-link'       => 'Wyślij Link Do Resetu Hasła',
     'verify'           => [
         'header' => 'Zweryfukuj Adres E-Mail',
@@ -33,5 +39,6 @@ return [
         'not'    => 'Jeśli nie otrzymałeś e-maila',
         'click'  => 'kliknij tutaj by przesłać jeszcze raz.',
     ],
-
+    'registered-error' => 'Błąd podczas próby rejestracji. Spróbuj ponownie.',
+    'registered'       => 'Pomyślnie zarejestrowano',
 ];
