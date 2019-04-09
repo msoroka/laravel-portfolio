@@ -12,5 +12,6 @@ class Social extends Model
     protected $fillable = [
         'name',
         'link',
+        'logo',
     ];
 }

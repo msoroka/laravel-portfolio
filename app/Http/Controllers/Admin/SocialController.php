@@ -2,46 +2,112 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Social\CreateSocialRequest;
+use App\Http\Requests\Social\UpdateSocialRequest;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Social;
+use Illuminate\View\View;
 
 class SocialController extends Controller
 {
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
         return view('admin.socials.index', [
             'socials' => Social::all(),
         ]);
     }
 
-    public function create()
+    /**
+     * @return View
+     */
+    public function create(): View
     {
-        //
+        return view('admin.socials.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param  CreateSocialRequest  $request
+     * @return RedirectResponse
+     */
+    public function store(CreateSocialRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        $logoName = time().'.'.request()->logo->getClientOriginalExtension();
+        request()->logo->move(public_path('images'), $logoName);
+
+        $data['logo'] = $logoName;
+
+        if (Social::create($data)) {
+            flash('Social created')->success();
+
+            return redirect()->route('admin.socials.index');
+        }
+
+        flash('Error while social creating')->error();
+
+        return redirect()->back()->withErrors()->withInput();
     }
 
-    public function show(Social $social)
+    /**
+     * @param  Social  $social
+     * @return View
+     */
+    public function edit(Social $social): View
     {
-        //
+        return view('admin.socials.edit', [
+            'social' => $social,
+        ]);
     }
 
-    public function edit(Social $social)
+    /**
+     * @param  UpdateSocialRequest  $request
+     * @param  Social  $social
+     * @return RedirectResponse
+     */
+    public function update(UpdateSocialRequest $request, Social $social): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        if(request()->logo){
+            $logoName = time().'.'.request()->logo->getClientOriginalExtension();
+            request()->logo->move(public_path('images'), $logoName);
+
+            $data['logo'] = $logoName;
+        }
+
+        if ($social->update($data)) {
+            flash('Social edited')->success();
+
+            return redirect()->route('admin.socials.index');
+        }
+
+        flash('Error while social editing')->error();
+
+        return redirect()->back()->withErrors()->withInput();
     }
 
-    public function update(Request $request, Social $social)
+    /**
+     * @param  Social  $social
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function destroy(Social $social): RedirectResponse
     {
-        //
-    }
+        if ($social->delete()) {
+            flash('Social deleted')->success();
 
-    public function destroy(Social $social)
-    {
-        //
+            return redirect()->route('admin.socials.index');
+        }
+
+        flash('Error while social removing')->error();
+
+        return redirect()->route('admin.socials.index');
+
     }
 }
