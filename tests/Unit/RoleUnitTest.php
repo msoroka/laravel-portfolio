@@ -23,7 +23,6 @@ class RoleUnitTest extends TestCase
         $this->assertEquals(Arr::get($data, 'slug'), $role->slug);
     }
 
-
     public function testRoleGet(): void
     {
         $role = factory(Role::class)->create();
