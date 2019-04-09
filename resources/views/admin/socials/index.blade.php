@@ -25,10 +25,12 @@
                         <th class="align-middle fit" scope="row"><img style="width: 100px"
                                                                       src="{{ asset('images/' . $social->logo) }}"
                                                                       alt="{{ $social->name }}">
-                        <th class="align-middle" scope="row"><a href="{{ $social->link }}">{{ $social->link }}</a></th>
+                        <th class="align-middle" scope="row"><a target="_blank"
+                                                                href="{{ $social->link }}">{{ $social->link }}</a></th>
                         </th>
                         <th class="align-middle fit" scope="row">
-                            <a class="btn btn-primary btn-sm" href="{{ route('admin.socials.edit', $social) }}">
+                            <a class="btn btn-primary btn-sm"
+                               href="{{ route('admin.socials.edit', $social) }}">
                                 <span data-feather="edit"></span>
                                 Edit
                             </a>
