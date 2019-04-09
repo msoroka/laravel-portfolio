@@ -22,7 +22,9 @@
                     <tr>
                         <th class="align-middle" scope="row">{{ $social->id }}</th>
                         <th class="align-middle" scope="row">{{ $social->name }}</th>
-                        <th class="align-middle fit" scope="row"><img style="width: 100px" src="{{ asset('images/' . $social->logo) }}" alt="{{ $social->name }}">
+                        <th class="align-middle fit" scope="row"><img style="width: 100px"
+                                                                      src="{{ asset('images/' . $social->logo) }}"
+                                                                      alt="{{ $social->name }}">
                         <th class="align-middle" scope="row"><a href="{{ $social->link }}">{{ $social->link }}</a></th>
                         </th>
                         <th class="align-middle fit" scope="row">
@@ -31,7 +33,7 @@
                                 Edit
                             </a>
                             <button class="btn btn-danger btn-sm" onclick="event.preventDefault();
-                                                 document.getElementById('social-destroy{{ $social->id }}').submit();">
+                                document.getElementById('social-destroy{{ $social->id }}').submit();">
                                 <span data-feather="trash-2"></span>
                                 Delete
                             </button>

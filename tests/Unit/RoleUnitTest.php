@@ -13,7 +13,8 @@ class RoleUnitTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function testRoleCreate(): void
+    public function testRoleCreate()
+    : void
     {
         $data = $this->prepareAssertionData();
         $role = Role::create($data);
@@ -23,7 +24,8 @@ class RoleUnitTest extends TestCase
         $this->assertEquals(Arr::get($data, 'slug'), $role->slug);
     }
 
-    public function testRoleGet(): void
+    public function testRoleGet()
+    : void
     {
         $role = factory(Role::class)->create();
         $foundRole = Role::find($role->id);
@@ -33,7 +35,8 @@ class RoleUnitTest extends TestCase
         $this->assertEquals($foundRole->slug, $role->slug);
     }
 
-    public function testRoleUpdate(): void
+    public function testRoleUpdate()
+    : void
     {
         $role = factory(Role::class)->create();
         $data = $this->prepareAssertionData();
@@ -46,7 +49,8 @@ class RoleUnitTest extends TestCase
     }
 
 
-    public function testRoleDelete(): void
+    public function testRoleDelete()
+    : void
     {
         $role = factory(Role::class)->create();
         $delete = $role->delete();
@@ -57,7 +61,8 @@ class RoleUnitTest extends TestCase
     /**
      * @return array
      */
-    private function prepareAssertionData(): array
+    private function prepareAssertionData()
+    : array
     {
         $word = $this->faker->word;
 

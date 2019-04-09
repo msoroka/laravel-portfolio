@@ -15,7 +15,8 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-8">
-            <form method="POST" action="{{ route('admin.socials.update', $social) }}" class="text-center" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.socials.update', $social) }}" class="text-center"
+                  enctype="multipart/form-data">
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
                 <p class="h4 mb-4">Edit Social</p>

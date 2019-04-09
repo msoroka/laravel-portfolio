@@ -15,7 +15,8 @@ class SocialController extends Controller
     /**
      * @return View
      */
-    public function index(): View
+    public function index()
+    : View
     {
         return view('admin.socials.index', [
             'socials' => Social::all(),
@@ -25,7 +26,8 @@ class SocialController extends Controller
     /**
      * @return View
      */
-    public function create(): View
+    public function create()
+    : View
     {
         return view('admin.socials.create');
     }
@@ -34,8 +36,8 @@ class SocialController extends Controller
      * @param  CreateSocialRequest  $request
      * @return RedirectResponse
      */
-    public function store(CreateSocialRequest $request): RedirectResponse
-    {
+    public function store(CreateSocialRequest $request)
+    : RedirectResponse {
         $data = $request->validated();
 
         $logoName = time().'.'.request()->logo->getClientOriginalExtension();
@@ -58,8 +60,8 @@ class SocialController extends Controller
      * @param  Social  $social
      * @return View
      */
-    public function edit(Social $social): View
-    {
+    public function edit(Social $social)
+    : View {
         return view('admin.socials.edit', [
             'social' => $social,
         ]);
@@ -70,11 +72,11 @@ class SocialController extends Controller
      * @param  Social  $social
      * @return RedirectResponse
      */
-    public function update(UpdateSocialRequest $request, Social $social): RedirectResponse
-    {
+    public function update(UpdateSocialRequest $request, Social $social)
+    : RedirectResponse {
         $data = $request->validated();
 
-        if(request()->logo){
+        if (request()->logo) {
             $logoName = time().'.'.request()->logo->getClientOriginalExtension();
             request()->logo->move(public_path('images'), $logoName);
 
@@ -97,8 +99,8 @@ class SocialController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(Social $social): RedirectResponse
-    {
+    public function destroy(Social $social)
+    : RedirectResponse {
         if ($social->delete()) {
             flash('Social deleted')->success();
 

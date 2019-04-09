@@ -15,7 +15,8 @@ class RoleController extends Controller
     /**
      * @return View
      */
-    public function index(): View
+    public function index()
+    : View
     {
         return view('admin.roles.index', [
             'roles' => Role::all(),
@@ -25,7 +26,8 @@ class RoleController extends Controller
     /**
      * @return View
      */
-    public function create(): View
+    public function create()
+    : View
     {
         return view('admin.roles.create');
     }
@@ -34,8 +36,8 @@ class RoleController extends Controller
      * @param  CreateRoleRequest  $request
      * @return RedirectResponse
      */
-    public function store(CreateRoleRequest $request): RedirectResponse
-    {
+    public function store(CreateRoleRequest $request)
+    : RedirectResponse {
         $data = $request->validated();
 
         if (Role::create($data)) {
@@ -53,8 +55,8 @@ class RoleController extends Controller
      * @param  Role  $role
      * @return View
      */
-    public function edit(Role $role): View
-    {
+    public function edit(Role $role)
+    : View {
         return view('admin.roles.edit', [
             'role' => $role,
         ]);
@@ -65,8 +67,8 @@ class RoleController extends Controller
      * @param  Role  $role
      * @return RedirectResponse
      */
-    public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
-    {
+    public function update(UpdateRoleRequest $request, Role $role)
+    : RedirectResponse {
         $data = $request->validated();
 
         if ($role->update($data)) {
@@ -85,8 +87,8 @@ class RoleController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(Role $role): RedirectResponse
-    {
+    public function destroy(Role $role)
+    : RedirectResponse {
         if ($role->delete()) {
             flash('Role deleted')->success();
 

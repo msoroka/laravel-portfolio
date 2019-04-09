@@ -12,7 +12,8 @@ class AdminTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function testAdminAccessWithRights(): void
+    public function testAdminAccessWithRights()
+    : void
     {
         $user = factory(User::class)->create();
         $user->role = Role::create([
@@ -26,7 +27,8 @@ class AdminTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testAdminAccessWithoutRights(): void
+    public function testAdminAccessWithoutRights()
+    : void
     {
         $user = factory(User::class)->create();
 
@@ -37,7 +39,8 @@ class AdminTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function testAdminAccessLoggedOut(): void
+    public function testAdminAccessLoggedOut()
+    : void
     {
         $response = $this->get(route('admin.dashboard'));
         $response->assertRedirect(route('login'));

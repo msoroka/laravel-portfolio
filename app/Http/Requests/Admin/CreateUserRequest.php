@@ -13,6 +13,7 @@ class CreateUserRequest extends FormRequest
      * @return bool
      */
     public function authorize()
+    : void
     {
         return true;
     }
@@ -23,6 +24,7 @@ class CreateUserRequest extends FormRequest
      * @return array
      */
     public function rules()
+    : array
     {
         return [
             'first_name' => 'required|alpha_dash|string|max:50',
@@ -38,8 +40,11 @@ class CreateUserRequest extends FormRequest
     }
 
 
+    /**
+     * @param $validator
+     */
     public function withValidator($validator)
-    {
+    : void {
         $validator->after(function ($validator) {
             $role_id = $this->input('role_id');
 

@@ -12,6 +12,7 @@ class UpdateRoleRequest extends FormRequest
      * @return bool
      */
     public function authorize()
+    : bool
     {
         return true;
     }
@@ -22,6 +23,7 @@ class UpdateRoleRequest extends FormRequest
      * @return array
      */
     public function rules()
+    : array
     {
         return [
             'name' => 'required|string|max:50|unique:roles,name,'.$this->role->id.',id',

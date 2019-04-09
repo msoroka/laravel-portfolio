@@ -13,6 +13,7 @@ class UpdateUserRequest extends FormRequest
      * @return bool
      */
     public function authorize()
+    : bool
     {
         return true;
     }
@@ -23,11 +24,12 @@ class UpdateUserRequest extends FormRequest
      * @return array
      */
     public function rules()
+    : array
     {
         return [
             'first_name' => 'required|string|max:50',
             'last_name'  => 'required|string|max:50',
-            'email'      => 'required|email|unique:users,email,' . $this->user->id . ',id',
+            'email'      => 'required|email|unique:users,email,'.$this->user->id.',id',
             'password'   => 'nullable|confirmed',
             'birth_date' => 'required|date',
             'phone'      => 'required|string|max:15',
@@ -37,8 +39,11 @@ class UpdateUserRequest extends FormRequest
         ];
     }
 
+    /**
+     * @param $validator
+     */
     public function withValidator($validator)
-    {
+    : void {
         $validator->after(function ($validator) {
             $role_id = $this->input('role_id');
 

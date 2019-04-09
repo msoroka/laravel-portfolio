@@ -12,6 +12,7 @@ class CreateSocialRequest extends FormRequest
      * @return bool
      */
     public function authorize()
+    : bool
     {
         return true;
     }
@@ -22,6 +23,7 @@ class CreateSocialRequest extends FormRequest
      * @return array
      */
     public function rules()
+    : array
     {
 
         return [

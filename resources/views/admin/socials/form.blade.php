@@ -34,7 +34,8 @@
 
 <div class="row">
     <div class="col-md-12 mb-4">
-        <input id="logo" name="logo" type="file" class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}"
+        <input id="logo" name="logo" type="file"
+               class="form-control-file {{ $errors->has('logo') ? ' is-invalid' : '' }}"
                placeholder="Logo" value="{{ isset($social) ? $social->logo : old('logo') }}">
         @if ($errors->has('logo'))
             <span class="invalid-feedback" role="alert">

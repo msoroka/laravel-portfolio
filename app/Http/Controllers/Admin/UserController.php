@@ -16,7 +16,8 @@ class UserController extends Controller
     /**
      * @return View
      */
-    public function index(): View
+    public function index()
+    : View
     {
         return view('admin.users.index', [
             'users' => User::all(),
@@ -26,7 +27,8 @@ class UserController extends Controller
     /**
      * @return View
      */
-    public function create(): View
+    public function create()
+    : View
     {
         return view('admin.users.create', [
             'roles' => Role::all(),
@@ -37,8 +39,8 @@ class UserController extends Controller
      * @param  CreateUserRequest  $request
      * @return RedirectResponse
      */
-    public function store(CreateUserRequest $request): RedirectResponse
-    {
+    public function store(CreateUserRequest $request)
+    : RedirectResponse {
         $data = $request->validated();
 
         if (User::create($data)) {
@@ -56,8 +58,8 @@ class UserController extends Controller
      * @param  User  $user
      * @return View
      */
-    public function edit(User $user): View
-    {
+    public function edit(User $user)
+    : View {
         return view('admin.users.edit', [
             'user'  => $user,
             'roles' => Role::all(),
@@ -69,8 +71,8 @@ class UserController extends Controller
      * @param  User  $user
      * @return RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user): RedirectResponse
-    {
+    public function update(UpdateUserRequest $request, User $user)
+    : RedirectResponse {
         $data = $request->validated();
 
         if ($data['password'] == null) {
@@ -93,8 +95,8 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws Exception
      */
-    public function destroy(User $user): RedirectResponse
-    {
+    public function destroy(User $user)
+    : RedirectResponse {
         if ($user->delete()) {
             flash('User deleted')->success();
 

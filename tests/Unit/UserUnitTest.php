@@ -14,7 +14,8 @@ class UserUnitTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    public function testUserCreate(): void
+    public function testUserCreate()
+    : void
     {
         $data = $this->prepareAssertionData();
         $user = User::create($data);
@@ -31,7 +32,8 @@ class UserUnitTest extends TestCase
     }
 
 
-    public function testUserGet():void
+    public function testUserGet()
+    : void
     {
         $user = factory(User::class)->create();
         $foundUser = User::find($user->id);
@@ -47,7 +49,8 @@ class UserUnitTest extends TestCase
         $this->assertEquals($foundUser->country, $user->country);
     }
 
-    public function testUserUpdate(): void
+    public function testUserUpdate()
+    : void
     {
         $user = factory(User::class)->create();
         $data = $this->prepareAssertionData();
@@ -65,7 +68,8 @@ class UserUnitTest extends TestCase
         $this->assertEquals(Arr::get($data, 'country'), $user->country);
     }
 
-    public function testUserDelete(): void
+    public function testUserDelete()
+    : void
     {
         $user = factory(User::class)->create();
         $delete = $user->delete();
@@ -73,7 +77,8 @@ class UserUnitTest extends TestCase
         $this->assertTrue($delete);
     }
 
-    public function testUserRole(): void
+    public function testUserRole()
+    : void
     {
         $user = factory(User::class)->create();
         $role = factory(Role::class)->create();
@@ -90,7 +95,8 @@ class UserUnitTest extends TestCase
     /**
      * @return array
      */
-    private function prepareAssertionData(): array
+    private function prepareAssertionData()
+    : array
     {
         return [
             'first_name' => $this->faker->firstNameMale,

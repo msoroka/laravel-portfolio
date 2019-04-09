@@ -55,7 +55,8 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return bool
      */
-    public function isAdmin(): bool
+    public function isAdmin()
+    : bool
     {
         return $this->role ? $this->role->slug == Role::where('slug', 'admin')->first()->slug : false;
     }
@@ -63,7 +64,8 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return string
      */
-    public function getFullNameAttribute(): string
+    public function getFullNameAttribute()
+    : string
     {
         return sprintf('%s %s', $this->first_name, $this->last_name);
     }
@@ -71,15 +73,16 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @param $value
      */
-    public function setPasswordAttribute($value): void
-    {
+    public function setPasswordAttribute($value)
+    : void {
         $this->attributes['password'] = bcrypt($value);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function role(): BelongsTo
+    public function role()
+    : BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
