@@ -23,7 +23,7 @@ class AdminTest extends TestCase
         $this->actingAs($user)->assertAuthenticated();
 
         $response = $this->get(route('admin.dashboard'));
-        $this->assertEquals($response->status(), 200);
+        $response->assertStatus(200);
     }
 
     public function testAdminAccessWithoutRights(): void
@@ -34,13 +34,13 @@ class AdminTest extends TestCase
 
         $response = $this->get(route('admin.dashboard'));
         $response->assertRedirect(route('home'));
-        $this->assertEquals($response->status(), 302);
+        $response->assertStatus(302);
     }
 
     public function testAdminAccessLoggedOut(): void
     {
         $response = $this->get(route('admin.dashboard'));
         $response->assertRedirect(route('login'));
-        $this->assertEquals($response->status(), 302);
+        $response->assertStatus(302);
     }
 }
