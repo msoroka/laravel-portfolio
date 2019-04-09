@@ -13,16 +13,18 @@ class LoginTest extends TestCase
 
     public function testGuestLoginView(): void
     {
-        $response = $this->get('/login');
+        $response = $this->get(route('login'));
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
+        $response->assertStatus(200);
     }
 
     public function testAuthLoginView(): void
     {
         $user = factory(User::class)->make();
-        $response = $this->actingAs($user)->get('/login');
+        $response = $this->actingAs($user)->get(route('login'));
         $response->assertRedirect(route('home'));
+        $response->assertStatus(302);
     }
 
     public function testCorrectLogin(): void
@@ -30,7 +32,7 @@ class LoginTest extends TestCase
         $user = factory(User::class)->create([
             'password' => bcrypt($password = $this->faker->password),
         ]);
-        $response = $this->post('/login', [
+        $response = $this->post(route('login'), [
             'email'    => $user->email,
             'password' => $password,
         ]);
@@ -43,12 +45,12 @@ class LoginTest extends TestCase
             'password' => bcrypt($this->faker->password),
         ]);
 
-        $response = $this->from('/login')->post('/login', [
+        $response = $this->from(route('login'))->post(route('login'), [
             'email'    => $user->email,
             'password' => $this->faker->password,
         ]);
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect(route('login'));
         $response->assertSessionHasErrors('email');
 
         $this->assertTrue(session()->hasOldInput('email'));
