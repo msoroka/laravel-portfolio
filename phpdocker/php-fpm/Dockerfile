@@ -8,3 +8,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get -y --no-install-recommends install  php7.3-mysql php7.3-sqlite3 \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+# install npm and nodejs
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -\
+    && apt-get install -y nodejs
+
+# update npm
+RUN npm i -g npm

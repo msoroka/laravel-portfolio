@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 class UsersTableSeeder extends Seeder
 {
     public function run()
+    : void
     {
         $role = Role::create([
             'name' => 'Administrator',
@@ -17,14 +18,12 @@ class UsersTableSeeder extends Seeder
             'first_name' => 'Mateusz',
             'last_name'  => 'Soroka',
             'email'      => 'xmsoroka@gmail.com',
-            'password'   => bcrypt('test1234'),
+            'password'   => 'test1234',
             'birth_date' => '1996-12-01',
             'phone'      => '789213308',
             'city'       => 'Gdańsk',
             'country'    => 'Poland',
+            'role_id'    => $role->id,
         ]);
-
-        $user->role = $role;
-        $user->save();
     }
 }
