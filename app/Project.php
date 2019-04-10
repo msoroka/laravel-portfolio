@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
@@ -33,4 +34,25 @@ class Project extends Model
         'date_from',
         'date_to',
     ];
+
+    /**
+     * @return mixed
+     */
+    public function getDateFromAttribute($value)
+    {
+        return Carbon::createFromFormat('Y-m-d', $value)->format('Y-m-d');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateToAttribute($value)
+    {
+        if ($value) {
+            return Carbon::createFromFormat('Y-m-d', $value)->format('Y-m-d');
+
+        }
+
+        return 'Present';
+    }
 }

@@ -98,6 +98,5 @@ class RoleController extends Controller
         flash('Error while role removing')->error();
 
         return redirect()->route('admin.roles.index');
-
     }
 }

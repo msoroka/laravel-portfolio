@@ -11,4 +11,7 @@ Route::resource('roles', 'Admin\RoleController')->except([
 Route::resource('socials', 'Admin\SocialController')->except([
     'show',
 ]);
+Route::resource('projects', 'Admin\ProjectController')->except([
+    'show',
+]);
 
