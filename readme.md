@@ -62,3 +62,9 @@ $ php artisan serve
 ```sh
 $ ./vendor/bin/phpunit
 ```
+### Access to admin dashboard:
+Log into app with following credentials:
+```sh
+xmsoroka@gmail.com
+test1234
+```
