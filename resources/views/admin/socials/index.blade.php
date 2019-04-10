@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <p class="h4 mb-4 text-center">All Socials</p>
     <div class="row">
         <div class="col-12">
             <table class="table table-hover table-bordered table-sm">
