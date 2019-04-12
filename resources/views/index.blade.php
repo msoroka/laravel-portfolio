@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
-    <h1>{{ __('homepage.welcome') }}</h1>
-    {{ bcrypt("test1234") }}
+    @include('_partials.menu')
+    @include('parts.showcase')
+    @include('parts.skills')
 @endsection

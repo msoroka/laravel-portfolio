@@ -7,20 +7,15 @@
 
     <title>@yield('title')</title>
 
-
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
-    @include('_partials.nav')
-
-    <main class="py-4">
-        @include('flash::message')
-        @yield('content')
-    </main>
+    @yield('content')
 </div>
 
+<script src="{{ asset('js/showcase.js') }}" defer></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
