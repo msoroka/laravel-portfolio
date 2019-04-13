@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12 mb-4">
+    <div class="col-md-6 mb-4">
         <input id="name" name="name" type="text"
                class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
                value="{{ isset($skill) ? $skill->name : old('name') }}"
@@ -7,6 +7,18 @@
         @if ($errors->has('name'))
             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+        @endif
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <input id="color" name="color" type="color"
+               class="form-control{{ $errors->has('color') ? ' is-invalid' : '' }}"
+               value="{{ isset($skill) ? $skill->color : old('color') }}"
+               placeholder="Color" required>
+        @if ($errors->has('color'))
+            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('color') }}</strong>
                             </span>
         @endif
     </div>

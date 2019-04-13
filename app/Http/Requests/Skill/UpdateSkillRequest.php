@@ -28,6 +28,7 @@ class UpdateSkillRequest extends FormRequest
         return [
             'name'        => 'required|string|max:50|unique:skills,name,'.$this->skill->id.',id',
             'description' => 'required|string',
+            'color'       => 'required|string',
             'image'       => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

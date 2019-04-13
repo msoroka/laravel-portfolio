@@ -29,6 +29,7 @@ class CreateSkillRequest extends FormRequest
         return [
             'name'        => 'required|string|max:50|unique:skills',
             'description' => 'required|string',
+            'color'       => 'required|string',
             'image'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }

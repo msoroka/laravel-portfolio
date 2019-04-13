@@ -13,6 +13,7 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Color</th>
                     <th scope="col">Image</th>
                     <th class="fit" scope="col">Actions</th>
                 </tr>
@@ -22,6 +23,7 @@
                     <tr>
                         <th class="align-middle" scope="row">{{ $skill->id }}</th>
                         <th class="align-middle" scope="row">{{ $skill->name }}</th>
+                        <th class="align-middle fit" scope="row">{{ $skill->color }}</th>
                         <th class="align-middle fit" scope="row"><img style="width: 100px"
                                                                       src="{{ asset('images/' . $skill->image) }}"
                                                                       alt="{{ $skill->name }}"></th>

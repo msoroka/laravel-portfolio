@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,8 +15,9 @@ class PageController extends Controller
     : View
     {
         return view('index', [
-            'title' => 'msoroka - Software Developer',
-            'brand' => 'msoroka.dev',
+            'title'  => 'msoroka - Software Developer',
+            'brand'  => 'msoroka.dev',
+            'skills' => Skill::all(),
         ]);
     }
 
