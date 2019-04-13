@@ -12,14 +12,14 @@
             <div>
                 <div>
                     <ul>
-                        <li><a href="{{ route('home') }}">Homepage</a></li>
-                        <li><a href="#">Skills</a></li>
-                        <li><a href="#">Experience</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="#homepage">Homepage</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#others">Others</a></li>
+                        <li><a href="#contact">Contact</a></li>
                         @if(Auth::check() ? Auth::user()->isAdmin() : false)
+                            <li><a href="#"></a></li>
                             <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         @endif
                         @if(Auth::check())

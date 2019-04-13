@@ -1,4 +1,4 @@
-<div class="showcase">
+<div class="showcase" id="homepage">
     <div class="showcase-inner">
         <div class="console">
             <div class=console-menu>

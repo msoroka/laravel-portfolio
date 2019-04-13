@@ -22,7 +22,6 @@ let typed = new Typed('#console-typing', {
 let myNav = document.getElementById('ms-nav');
 window.onscroll = function() {
     if (this.scrollY > 50) {
-        console.log('juz');
         myNav.classList.add("scrolled");
         myNav.classList.remove("transparent");
     } else {

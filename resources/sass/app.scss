@@ -164,13 +164,20 @@ body {
     transition: color 0.4s ease;
 }
 
-.showcase {
+.separator {
+    width: 100vw;
+    height: 20vh;
     background-color: $showcase-color;
-    color: #fff;
-    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.skills {
+.separator > h3 {
+    font-size: 1.5rem;
+}
+
+.showcase {
     background-color: $showcase-color;
     color: #fff;
     height: 100vh;
@@ -181,6 +188,91 @@ body {
     background: url('../images/showcase.jpg') no-repeat center center/cover;
     position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.skills {
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.skills:before {
+    content: '';
+    background: url('../images/code.jpeg') no-repeat center center/cover;
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.experience {
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.experience:before {
+    content: '';
+    background: url('../images/showcase.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 200vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.projects {
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.projects:before {
+    content: '';
+    background: url('../images/showcase.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 300vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.others {
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.others:before {
+    content: '';
+    background: url('../images/showcase.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 400vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.contact {
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.contact:before {
+    content: '';
+    background: url('../images/showcase.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 500vh;
     left: 0;
     width: 100%;
     height: 100%;
@@ -277,8 +369,8 @@ body {
 }
 
 .scrolled {
-    background-color: $overlay-color;
-    transition: background-color 0.4s linear;
+    //background-color: $overlay-color;
+    //transition: background-color 0.4s linear;
 }
 
 .login-container {
