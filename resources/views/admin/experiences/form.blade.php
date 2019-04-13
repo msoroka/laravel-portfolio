@@ -89,7 +89,7 @@
 @isset($experience)
     <div class="row">
         <div class="col-md-12 mb-4">
-            <img class="img-fluid img-thumbnail" src="{{ asset('logos/' . $experience->logo) }}"
+            <img class="img-fluid img-thumbnail" src="{{ asset('images/' . $experience->logo) }}"
                  alt="{{ $experience->name }}">
         </div>
     </div>
