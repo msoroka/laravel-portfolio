@@ -17,4 +17,6 @@ Route::resource('projects', 'Admin\ProjectController')->except([
 Route::resource('experiences', 'Admin\ExperienceController')->except([
     'show',
 ]);
-
+Route::resource('skills', 'Admin\SkillController')->except([
+    'show',
+]);

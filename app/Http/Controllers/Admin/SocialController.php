@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Social\CreateSocialRequest;
-use App\Http\Requests\Social\UpdateSocialRequest;
+use App\Http\Requests\Social\CreateSkillRequest;
+use App\Http\Requests\Social\UpdateSkillRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
@@ -33,10 +33,10 @@ class SocialController extends Controller
     }
 
     /**
-     * @param  CreateSocialRequest  $request
+     * @param  CreateSkillRequest  $request
      * @return RedirectResponse
      */
-    public function store(CreateSocialRequest $request)
+    public function store(CreateSkillRequest $request)
     : RedirectResponse {
         $data = $request->validated();
 
@@ -68,11 +68,11 @@ class SocialController extends Controller
     }
 
     /**
-     * @param  UpdateSocialRequest  $request
+     * @param  UpdateSkillRequest  $request
      * @param  Social  $social
      * @return RedirectResponse
      */
-    public function update(UpdateSocialRequest $request, Social $social)
+    public function update(UpdateSkillRequest $request, Social $social)
     : RedirectResponse {
         $data = $request->validated();
 
