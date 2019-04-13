@@ -219,7 +219,8 @@ body {
 }
 
 .console-screen {
-    height: 45vh;
+    height: auto;
+    min-height: 45vh;
     background-color: #151515;
     box-sizing: border-box;
     margin: 0;
@@ -258,7 +259,8 @@ body {
         width: 90vw;
     }
     .console-screen {
-        height: 35vh;
+        height: auto;
+        min-height: 35vh;
     }
 }
 
@@ -277,4 +279,67 @@ body {
 .scrolled {
     background-color: $overlay-color;
     transition: background-color 0.4s linear;
+}
+
+.login-container {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: $showcase-color;
+    color: #fff;
+    height: 100vh;
+}
+
+.login-container::before {
+    content: '';
+    background: url('../images/showcase.jpg') no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
